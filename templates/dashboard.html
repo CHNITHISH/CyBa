@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard - CyberLearn Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #232526, #414345);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      background: #1c1c1c;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: all 0.3s ease-in-out;
+    }
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #00c6ff;
+    }
+    .card-title {
+      color: #00c6ff;
+      font-size: 1.5rem;
+    }
+    .locked {
+      color: #dc3545;
+    }
+    .access {
+      color: #28a745;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h2 class="text-center mb-5" data-aos="fade-down" style="color: rgb(237, 242, 246); font-family:cursive; font-size: 100px;">Welcome to CyBa</h2>
+    <div class="row g-4">
+      {% for note in notes %}
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="card p-4 text-center h-100">
+          <h4 class="card-title">{{ note }}</h4>
+          {% if access[note] == "Locked" or access[note] == "Expired" %}
+            <p class="locked">{{ access[note] }}</p>
+            <a href="{{ url_for('payment', note=note) }}" class="btn btn-warning">Buy Access</a>
+          {% else %}
+            <p class="access">✔️ {{ access[note] }}</p>
+            <a href="{{ url_for('notes', note_name=note) }}" class="btn btn-success">View Notes</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+      <a href="{{ url_for('logout') }}" class="btn btn-danger px-4">Logout</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>
