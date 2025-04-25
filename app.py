@@ -15,7 +15,7 @@ login_manager.login_view = 'login'
 RAZORPAY_KEY = 'rzp_test_tBShEJdYWLgAzr'     # replace with actual key
 RAZORPAY_SECRET = 'ymsNG0fQ9yE9onZ88JFHFGZ9'  # replace with actual secret
 
-NOTES = ['SQL', 'DBMS', 'HTML/CSS/JS', 'CN', 'Python', 'OS', 'Java']
+NOTES =  ['SQL', 'DBMS', 'HTML,CSS,JS', 'CN', 'Python', 'OS', 'Java']
 
 # ------------------ Database Init ------------------
 def init_db():
